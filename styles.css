@@ -133,9 +133,9 @@ nav a {
 }
 
 .hero h1 {
-    font-size: 5.2rem;
-    line-height: 0.7;
     margin-bottom: 24px;
+    font-size: clamp(1.9rem, 6.2vw, 5.2rem);
+    line-height: 0.9;
 }
 
 .hero p {
@@ -685,7 +685,6 @@ footer {
     }
 
     .hero h1 {
-        font-size: 2.2rem;
         line-height: 1.2;
         margin-bottom: 16px;
     }
@@ -840,7 +839,6 @@ footer {
     }
 
     .hero h1 {
-        font-size: 1.8rem;
         line-height: 1.2;
         margin-bottom: 16px;
     }
