@@ -251,12 +251,15 @@ nav a {
 .grid-section {
     max-width: 1100px;
     margin: 0 auto 80px auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 20px;
 }
 
 .card {
+    flex: 1 1 300px;
+    max-width: 350px;
     background-color: var(--card-bg);
     border: 2px solid var(--border-color);
     border-radius: 32px;
@@ -464,14 +467,17 @@ footer {
 }
 
 .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 32px;
 }
 
 .team-card {
     position: relative;
     text-align: center;
+    flex: 1 1 240px; 
+    max-width: 320px;
 }
 
 .team-card .role-badge {
