@@ -31,22 +31,13 @@ header {
     justify-content: space-between;
     align-items: center;
     max-width: 1100px;
-    margin: 0 auto 60px auto;
+    margin: 0 auto 40px auto;
     padding: 20px 0;
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: 800;
-    background: var(--accent-orange);
-    padding: 8px 20px;
-    border-radius: 999px;
-    border: 2px solid var(--border-color);
     width: fit-content;
     height: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .logo img {
@@ -134,7 +125,7 @@ nav a {
 
 .hero h1 {
     margin-bottom: 24px;
-    font-size: clamp(1.9rem, 6.2vw, 5.2rem);
+    font-size: clamp(2.2rem, 6.2vw, 5.8rem);
     line-height: 0.9;
 }
 
