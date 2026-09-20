@@ -147,7 +147,8 @@ nav a:hover {
 
 .hero p {
     font-size: 1.3rem;
-    margin-bottom: 32px;
+    max-width: 570px;          
+    margin: 0 auto 32px auto;
     color: #4A4A4A;
 }
 
