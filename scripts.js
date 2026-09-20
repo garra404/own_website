@@ -31,6 +31,22 @@ document.addEventListener('click', (e) => {
 });
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const logoImg = document.querySelector('.img-logo');
+
+if (!prefersReducedMotion) {
+    logoImg.addEventListener('click', () => {
+        logoImg.classList.remove('coin');
+        void logoImg.offsetWidth; // fuerza reflow para re-disparar
+        logoImg.classList.add('coin');
+    });
+
+    // Limpia la clase cuando termina para dejar todo en estado base
+    logoImg.addEventListener('animationend', () => {
+        logoImg.classList.remove('coin');
+    });
+}
+
 const avatarFrames = document.querySelectorAll('.avatar-frame');
 const MAX_PARALLAX_PHOTO = 4; // la foto central queda casi estática
 

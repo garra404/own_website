@@ -41,9 +41,29 @@ header {
 }
 
 .logo img {
-    width: 100px;
+   /*  width: 100px;
+    height: auto;
+    user-select: none; */
+     width: 100px;
     height: auto;
     user-select: none;
+    cursor: pointer; /* nuevo: indica que es clickeable */
+}
+
+@keyframes pulso {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(1.18); }
+    100% { transform: scale(1); }
+}
+
+.img-logo.coin {
+    animation: pulso 550ms ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .img-logo.coin {
+        animation: none;
+    }
 }
 
 nav {
