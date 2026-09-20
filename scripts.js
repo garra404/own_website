@@ -1,5 +1,4 @@
 const hamburger = document.getElementById('hamburger');
-const closeMenu = document.getElementById('close-menu');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = navMenu.querySelectorAll('a');
 
@@ -11,10 +10,6 @@ hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
 
-closeMenu.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-});
 
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
