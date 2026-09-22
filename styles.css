@@ -53,12 +53,15 @@ header {
     100% { transform: scale(1); }
 }
 
-.img-logo.coin {
+.img-logo.coin,
+.section-title.coin {
     animation: pulso 550ms ease-in-out;
+    transform-origin: center;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .img-logo.coin {
+    .img-logo.coin,
+    .section-title.coin {
         animation: none;
     }
 }

@@ -162,8 +162,7 @@ if (serviceCards.length && !supportsHover) {
     });
 }
 
-const heroWords = ['eficiencia', 'rapidez', 'claridad', 'seguridad', 'optimización', 'autonomía',
- 'presencia', 'control', 'crecimiento'];
+const heroWords = ['rapidez', 'eficiencia', 'claridad', 'seguridad', 'optimización', 'autonomía'];
 const wordRotator = document.getElementById('word-rotator');
 
 if (wordRotator) {
@@ -220,4 +219,25 @@ if (wordRotator) {
 
         cycleWords();
     }
+}
+// ===== Pulso en los h2 al entrar en pantalla =====
+if (!prefersReducedMotion) {
+    const sectionTitles = document.querySelectorAll('.section-title');
+
+    const titleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.remove('coin');
+                void entry.target.offsetWidth; // fuerza reflow por si re-entra
+                entry.target.classList.add('coin');
+            }
+        });
+    }, { threshold: 0.5 }); // se dispara cuando el 50% del h2 es visible
+
+    sectionTitles.forEach(title => {
+        title.addEventListener('animationend', () => {
+            title.classList.remove('coin');
+        });
+        titleObserver.observe(title);
+    });
 }
