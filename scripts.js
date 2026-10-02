@@ -162,7 +162,7 @@ if (serviceCards.length && !supportsHover) {
     });
 }
 
-const heroWords = ['rapidez', 'eficiencia', 'claridad', 'seguridad', 'optimización', 'autonomía'];
+const heroWords = ['eficiencia', 'rapidez', 'claridad', 'seguridad', 'optimización', 'autonomía'];
 const wordRotator = document.getElementById('word-rotator');
 
 if (wordRotator) {
