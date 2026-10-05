@@ -17,6 +17,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -24,6 +25,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     padding: 20px;
+    overflow-x: hidden;
 }
 
 header {
@@ -911,6 +913,7 @@ footer {
 
     .interactive-banner .claw-mark {
         --claw-w: 55px;
+        transform: translate(20%, -35%) rotate(24deg) scale(0.45);
     }
 
     .grid-section {
