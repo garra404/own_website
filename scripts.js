@@ -8,6 +8,7 @@ document.querySelector('.img-logo')
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
+    document.body.classList.toggle('no-scroll');
 });
 
 
@@ -232,7 +233,8 @@ if (!prefersReducedMotion) {
                 entry.target.classList.add('coin');
             }
         });
-    }, { threshold: 0.5 }); // se dispara cuando el 50% del h2 es visible
+    }, { threshold: 0,
+        rootMargin: '-100px 0px -100px 0px' });
 
     sectionTitles.forEach(title => {
         title.addEventListener('animationend', () => {

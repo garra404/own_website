@@ -28,6 +28,10 @@ body {
     overflow-x: hidden;
 }
 
+    body.no-scroll {
+        overflow: hidden;
+    }
+
 header {
     display: flex;
     justify-content: space-between;
@@ -709,9 +713,10 @@ footer {
     nav {
         position: fixed;
         top: 0;
+        bottom: 0;
         left: -100%;
         width: 80%;
-        height: 100vh;
+        height: 100dvh;
         background-color: var(--card-bg);
         flex-direction: column;
         gap: 12px;
@@ -721,6 +726,8 @@ footer {
         z-index: 999;
         border-right: 2px solid var(--border-color);
         box-shadow: 4px 0 0 var(--border-color);
+        border-top-right-radius: 24px;
+        border-bottom-right-radius: 24px;
     }
 
     nav.active {
@@ -854,23 +861,6 @@ footer {
     .close-menu span {
         width: 24px;
         height: 2.5px;
-    }
-
-    nav {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 80%;
-        height: 100vh;
-        background-color: var(--card-bg);
-        flex-direction: column;
-        gap: 12px;
-        padding: 70px 16px 20px 16px;
-        text-align: center;
-        transition: left 0.3s ease;
-        z-index: 999;
-        border-right: 2px solid var(--border-color);
-        box-shadow: 4px 0 0 var(--border-color);
     }
 
     nav.active {
