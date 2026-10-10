@@ -1,12 +1,26 @@
+/* ==========================================================================
+   VARIABLES
+   ========================================================================== */
+
 :root {
     --bg-color: #F8F5EE;
     --card-bg: #FFFFFF;
     --text-color: #1A1A1A;
+    --text-muted: #4A4A4A;
+    --border-color: #1A1A1A;
+    --border-base: 2px solid var(--border-color);
     --accent-green: #BCE7C0;
     --accent-orange: #FFD2A6;
     --accent-purple: #D5C5E7;
-    --border-color: #1A1A1A;
+    /* Naranja más oscuro, para texto y detalles sobre fondo claro */
+    --accent-orange-strong: #E08A3E;
+    --content-width: 1100px;
 }
+
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
 
 * {
     box-sizing: border-box;
@@ -28,16 +42,51 @@ body {
     overflow-x: hidden;
 }
 
-    body.no-scroll {
-        overflow: hidden;
-    }
+body.no-scroll {
+    overflow: hidden;
+}
+
+
+/* ==========================================================================
+   LAYOUT COMPARTIDO
+   ========================================================================== */
+
+/* Contenedor centrado de las secciones principales */
+.grid-section,
+.portfolio-section,
+.team-section,
+.interactive-banner {
+    max-width: var(--content-width);
+    margin: 0 auto 80px;
+}
+
+/* Título y subtítulo de las secciones Portfolio y Equipo */
+.portfolio-section .section-title,
+.team-section .section-title {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.portfolio-section .section-sub,
+.team-section .section-sub {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin: 0 auto 48px;
+}
+
+
+/* ==========================================================================
+   HEADER Y NAVEGACIÓN
+   ========================================================================== */
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1100px;
-    margin: 0 auto 40px auto;
+    max-width: var(--content-width);
+    margin: 0 auto 40px;
     padding: 20px 0;
 }
 
@@ -47,16 +96,25 @@ header {
 }
 
 .logo img {
-     width: 100px;
+    width: 100px;
     height: auto;
     user-select: none;
     cursor: pointer;
 }
 
+/* Pulso del logo y de los títulos de sección al activarse la clase .coin */
 @keyframes pulso {
-    0%   { transform: scale(1); }
-    35%  { transform: scale(1.06); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(1.06);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .img-logo.coin,
@@ -65,16 +123,11 @@ header {
     transform-origin: center;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .img-logo.coin,
-    .section-title.coin {
-        animation: none;
-    }
-}
-
 nav {
     display: flex;
-    gap: 0;
+    /* Scroll interno si los enlaces no entran en pantalla (menú móvil) */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 nav a {
@@ -86,11 +139,12 @@ nav a {
 }
 
 nav a:hover {
-    color: #E08A3E;
+    color: var(--accent-orange-strong);
 }
 
+/* Botón del menú móvil: oculto en desktop, visible desde 768px hacia abajo */
 .hamburger {
-    display: none; /* se activa en mobile como antes */
+    display: none;
     position: relative;
     width: 28px;
     height: 22px;
@@ -110,10 +164,21 @@ nav a:hover {
     transition: top 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
 }
 
-.hamburger span:nth-child(1) { top: 0; }
-.hamburger span:nth-child(2) { top: 50%; margin-top: -1.5px; }
-.hamburger span:nth-child(3) { top: 100%; margin-top: -3px; }
+.hamburger span:nth-child(1) {
+    top: 0;
+}
 
+.hamburger span:nth-child(2) {
+    top: 50%;
+    margin-top: -1.5px;
+}
+
+.hamburger span:nth-child(3) {
+    top: 100%;
+    margin-top: -3px;
+}
+
+/* Menú abierto: las tres barras forman una X */
 .hamburger.active span:nth-child(1) {
     top: 50%;
     margin-top: -1.5px;
@@ -130,6 +195,7 @@ nav a:hover {
     transform: rotate(-45deg);
 }
 
+/* Botón de cierre del menú móvil (oculto por defecto) */
 .close-menu {
     display: none;
     background: none;
@@ -142,9 +208,14 @@ nav a:hover {
     z-index: 1000;
 }
 
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
 .hero {
     max-width: 900px;
-    margin: 0 auto 80px auto;
+    margin: 0 auto 80px;
     text-align: center;
 }
 
@@ -156,11 +227,12 @@ nav a:hover {
 
 .hero p {
     font-size: 1.3rem;
-    max-width: 570px;          
-    margin: 0 auto 32px auto;
-    color: #4A4A4A;
+    max-width: 570px;
+    margin: 0 auto 32px;
+    color: var(--text-muted);
 }
 
+/* Palabra rotativa del título, con cursor parpadeante */
 .word-rotator-wrap {
     display: inline-block;
     position: relative;
@@ -168,7 +240,7 @@ nav a:hover {
 
 .word-rotator {
     display: inline-block;
-    color: #E08A3E;
+    color: var(--accent-orange-strong);
 }
 
 .word-rotator-cursor {
@@ -177,12 +249,11 @@ nav a:hover {
     height: 0.85em;
     margin-left: 2px;
     vertical-align: -0.05em;
-    background-color: #E08A3E;
+    background-color: var(--accent-orange-strong);
     animation: cursor-blink 0.8s step-end infinite;
 }
 
 @keyframes cursor-blink {
-
     0%,
     100% {
         opacity: 1;
@@ -193,11 +264,10 @@ nav a:hover {
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .word-rotator-cursor {
-        animation: none;
-    }
-}
+
+/* ==========================================================================
+   BOTÓN PRINCIPAL
+   ========================================================================== */
 
 .btn-main {
     display: inline-block;
@@ -207,18 +277,23 @@ nav a:hover {
     font-size: 1.2rem;
     padding: 16px 36px;
     border-radius: 999px;
-    border: 2px solid var(--border-color);
+    border: var(--border-base);
     text-decoration: none;
-    box-shadow: 4px 4px 0px var(--border-color);
+    box-shadow: 4px 4px 0 var(--border-color);
     transition: all 0.15s ease;
 }
 
 .btn-main:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px var(--border-color);
+    box-shadow: 6px 6px 0 var(--border-color);
 }
 
-/* ===== Marca de garra al hacer hover (botón "Charlemos" y banner de contacto) ===== */
+
+/* ==========================================================================
+   EFECTO GARRA
+   Se usa en el botón "Charlemos" y en el banner de contacto.
+   ========================================================================== */
+
 .claw-hover {
     position: relative;
 }
@@ -230,7 +305,7 @@ nav a:hover {
     width: var(--claw-w, 80px);
     height: auto;
     transform-origin: top right;
-    /* Estado inicial: afuera de la esquina superior derecha, rotada y chica */
+    /* Estado inicial: fuera de la esquina superior derecha, rotada y chica */
     transform: translate(48%, -55%) rotate(24deg) scale(0.45);
     opacity: 0;
     pointer-events: none;
@@ -240,7 +315,7 @@ nav a:hover {
     transition: transform 0.28s ease-in, opacity 0.22s ease-in;
 }
 
-/* Al hacer hover (o foco por teclado), la garra "araña" hacia adentro con rebote */
+/* Con hover o foco de teclado, la garra "araña" hacia adentro con rebote */
 .claw-hover:hover .claw-mark,
 .claw-hover:focus-visible .claw-mark {
     opacity: 0.85;
@@ -258,19 +333,15 @@ nav a:hover {
     right: -4px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .claw-mark {
-        transition: opacity 0.2s ease;
-        transform: translate(14%, -20%) rotate(-6deg) scale(1);
-    }
-}
+
+/* ==========================================================================
+   CARDS DE SERVICIOS
+   ========================================================================== */
 
 .grid-section {
-    max-width: 1100px;
-    margin: 0 auto 80px auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; 
+    justify-content: center;
     gap: 20px;
 }
 
@@ -278,46 +349,13 @@ nav a:hover {
     flex: 1 1 300px;
     max-width: 350px;
     background-color: var(--card-bg);
-    border: 2px solid var(--border-color);
+    border: var(--border-base);
     border-radius: 32px;
     padding: 36px;
-    box-shadow: 4px 4px 0px var(--border-color);
+    box-shadow: 4px 4px 0 var(--border-color);
     position: relative;
+    /* El emoji del hover sobresale del borde de la card */
     overflow: visible;
-}
-
-/* Emoji gigante que aparece cruzando la esquina inferior derecha al hacer hover */
-.card-hover-emoji {
-    position: absolute;
-    right: -18px;
-    bottom: -28px;
-    font-size: 6.5rem;
-    line-height: 1;
-    transform: rotate(-30deg) scale(0.4);
-    opacity: 0;
-    pointer-events: none;
-    user-select: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    z-index: 2;
-    filter: drop-shadow(3px 3px 0px rgba(0, 0, 0, 0.15));
-}
-
-.card:hover .card-hover-emoji {
-    opacity: 1;
-    transform: rotate(-22deg) scale(1);
-}
-
-/* Touch (tablet/celular): el emoji aparece al tocar la card */
-.card.is-touched .card-hover-emoji {
-    opacity: 1;
-    transform: rotate(-22deg) scale(1);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .card-hover-emoji {
-        transition: opacity 0.2s ease;
-        transform: rotate(-22deg) scale(1);
-    }
 }
 
 .card h3 {
@@ -337,24 +375,33 @@ nav a:hover {
     background-color: var(--accent-green);
 }
 
-/* ===== SECCIÓN PORTFOLIO / TRABAJOS ANTERIORES ===== */
-.portfolio-section {
-    max-width: 1100px;
-    margin: 0 auto 80px auto;
+/* Emoji gigante que cruza la esquina inferior derecha al hacer hover */
+.card-hover-emoji {
+    position: absolute;
+    right: -18px;
+    bottom: -28px;
+    font-size: 6.5rem;
+    line-height: 1;
+    transform: rotate(-30deg) scale(0.4);
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+    filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.15));
 }
 
-.portfolio-section .section-title {
-    font-size: 2.2rem;
-    text-align: center;
-    margin-bottom: 12px;
+/* En pantallas táctiles el emoji aparece al tocar la card (.is-touched) */
+.card:hover .card-hover-emoji,
+.card.is-touched .card-hover-emoji {
+    opacity: 1;
+    transform: rotate(-22deg) scale(1);
 }
 
-.portfolio-section .section-sub {
-    text-align: center;
-    color: #4A4A4A;
-    max-width: 560px;
-    margin: 0 auto 48px auto;
-}
+
+/* ==========================================================================
+   PORTFOLIO
+   ========================================================================== */
 
 .portfolio-grid {
     display: grid;
@@ -364,9 +411,9 @@ nav a:hover {
 
 .portfolio-card {
     background-color: var(--card-bg);
-    border: 2px solid var(--border-color);
+    border: var(--border-base);
     border-radius: 32px;
-    box-shadow: 5px 5px 0px var(--border-color);
+    box-shadow: 5px 5px 0 var(--border-color);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -375,13 +422,13 @@ nav a:hover {
 
 .portfolio-card:hover {
     transform: translateY(-4px);
-    box-shadow: 7px 7px 0px var(--border-color);
+    box-shadow: 7px 7px 0 var(--border-color);
 }
 
 .portfolio-img-wrapper {
     width: 100%;
     height: 240px;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: var(--border-base);
     background-color: #EEE;
     overflow: hidden;
 }
@@ -413,7 +460,7 @@ nav a:hover {
 
 .portfolio-content p {
     font-size: 0.95rem;
-    color: #4A4A4A;
+    color: var(--text-muted);
     margin-bottom: 20px;
     flex-grow: 1;
 }
@@ -433,55 +480,21 @@ nav a:hover {
     color: var(--text-color);
     text-decoration: none;
     padding: 8px 18px;
-    border: 2px solid var(--border-color);
+    border: var(--border-base);
     border-radius: 999px;
-    box-shadow: 2px 2px 0px var(--border-color);
+    box-shadow: 2px 2px 0 var(--border-color);
     transition: all 0.15s ease;
 }
 
 .portfolio-link:hover {
     transform: translate(-1px, -1px);
-    box-shadow: 3px 3px 0px var(--border-color);
+    box-shadow: 3px 3px 0 var(--border-color);
 }
 
-.interactive-banner {
-    max-width: 1100px;
-    margin: 0 auto 80px auto;
-    background: var(--accent-orange);
-    border: 2px solid var(--border-color);
-    border-radius: 32px;
-    padding: 40px;
-    text-align: center;
-    box-shadow: 4px 4px 0px var(--border-color);
-}
 
-footer {
-    text-align: center;
-    padding: 40px 0;
-    border-top: 2px solid var(--border-color);
-    max-width: 1100px;
-    margin: 0 auto;
-    font-weight: 600;
-}
-
-/* ===== SECCIÓN NOSOTROS / STAFF ===== */
-.team-section {
-    max-width: 1100px;
-    margin: 0 auto 80px auto;
-}
-
-.team-section .section-title {
-    font-size: 2.2rem;
-    text-align: center;
-    margin-bottom: 12px;
-}
-
-.team-section .section-sub {
-    text-align: center;
-    color: #4A4A4A;
-    max-width: 560px;
-    margin: 0 auto 48px auto;
-}
+/* ==========================================================================
+   EQUIPO
+   ========================================================================== */
 
 .team-grid {
     display: flex;
@@ -493,17 +506,28 @@ footer {
 .team-card {
     position: relative;
     text-align: center;
-    flex: 1 1 240px; 
+    flex: 1 1 240px;
     max-width: 320px;
 }
 
+.team-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+}
+
+.team-card p.member-role {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Etiqueta de rol, con una inclinación distinta en cada card */
 .team-card .role-badge {
     display: inline-block;
     font-size: 0.85rem;
     font-weight: 800;
     padding: 4px 14px;
     border-radius: 999px;
-    border: 2px solid var(--border-color);
+    border: var(--border-base);
     margin-bottom: 14px;
     transform: rotate(-3deg);
 }
@@ -516,31 +540,36 @@ footer {
     transform: rotate(-2deg);
 }
 
+/*
+   Marco del avatar. Orden de las capas (z-index):
+   10-30  emojis de fondo, de la más lejana (10) a la más cercana a la foto (30)
+   40     foto
+   50     emojis de frente
+*/
 .avatar-frame {
     position: relative;
     width: 220px;
     height: 250px;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 20px;
     border-radius: 28px;
-    border: 2px solid var(--border-color);
-    box-shadow: 5px 5px 0px var(--border-color);
+    border: var(--border-base);
+    box-shadow: 5px 5px 0 var(--border-color);
     overflow: hidden;
     isolation: isolate;
 }
 
+/* La foto es un poco más grande que el marco para dejar margen al parallax (--parallax-photo) */
 .avatar-photo {
     position: absolute;
-    inset: -6px -6px -6px -6px;
+    inset: -6px;
     width: calc(100% + 12px);
     height: calc(100% + 12px);
     object-fit: cover;
     transform: translateY(var(--parallax-photo, 0px));
     will-change: transform;
     z-index: 40;
-    /* entre las 3 capas de fondo (10/20/30) y la de frente (50) */
 }
 
-/* Capas de emojis: fondo (detrás de la foto) y frente (delante de la foto) */
 .emoji-layer {
     position: absolute;
     inset: 0;
@@ -550,14 +579,13 @@ footer {
     transition: opacity 0.35s ease;
 }
 
-/* La lluvia de emojis solo se muestra mientras el mouse está sobre la card */
+/* La lluvia de emojis solo se ve mientras el mouse está sobre la card (.is-raining) */
 .avatar-frame.is-raining .emoji-layer {
     opacity: 1;
 }
 
 .emoji-layer.emoji-back-3 {
     z-index: 10;
-    /* la más lejana */
 }
 
 .emoji-layer.emoji-back-2 {
@@ -566,7 +594,6 @@ footer {
 
 .emoji-layer.emoji-back-1 {
     z-index: 30;
-    /* la más cercana a la foto */
 }
 
 .emoji-layer.emoji-front {
@@ -585,7 +612,7 @@ footer {
 
 .emoji-front .falling-emoji {
     font-size: 2.8rem;
-    filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.15));
 }
 
 .emoji-back-1 .falling-emoji {
@@ -603,17 +630,40 @@ footer {
     opacity: 0.4;
 }
 
-.team-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 2px;
+
+/* ==========================================================================
+   BANNER DE CONTACTO
+   ========================================================================== */
+
+.interactive-banner {
+    background: var(--accent-orange);
+    border: var(--border-base);
+    border-radius: 32px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 4px 4px 0 var(--border-color);
 }
 
-.team-card p.member-role {
-    font-size: 0.9rem;
-    color: #4A4A4A;
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: var(--border-base);
+    max-width: var(--content-width);
+    margin: 0 auto;
+    font-weight: 600;
 }
 
-/* ===== Textura de circulitos en el fondo inferior ===== */
+
+/* ==========================================================================
+   TEXTURA DE FONDO
+   Círculos que se desplazan lentamente y se desvanecen hacia arriba.
+   ========================================================================== */
+
 .bg-dots {
     position: fixed;
     bottom: 0;
@@ -634,6 +684,7 @@ footer {
     top: 0;
     bottom: 0;
     left: 0;
+    /* El ancho extra y el desplazamiento de 25px (= background-size) generan un loop sin saltos */
     width: calc(100% + 25px);
     background-image: radial-gradient(circle, var(--text-color) 5.5px, transparent 3px);
     background-size: 25px 25px;
@@ -642,63 +693,30 @@ footer {
 }
 
 @keyframes dots-drift {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-25px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .avatar-photo {
-        transition: none !important;
-        transform: none !important;
+    from {
+        transform: translateX(0);
     }
 
-    .emoji-layer {
-        display: none;
-    }
-
-    .bg-dots::before,
-    .bg-dots::after {
-        animation: none;
-    }
-
-}
-
-@media (max-width: 480px) {
-    .avatar-frame {
-        width: 180px;
-        height: 210px;
-    }
-
-    .emoji-front .falling-emoji {
-        font-size: 2.1rem;
-    }
-
-    .emoji-back-1 .falling-emoji {
-        font-size: 1.3rem;
-    }
-
-    .emoji-back-2 .falling-emoji {
-        font-size: 1.05rem;
-    }
-
-    .emoji-back-3 .falling-emoji {
-        font-size: 0.8rem;
+    to {
+        transform: translateX(-25px);
     }
 }
 
-/* ===== TABLETS (768px y inferior) ===== */
+
+/* ==========================================================================
+   RESPONSIVE
+   Desktop first: los breakpoints van de mayor a menor.
+   Excepción: el ajuste del menú en horizontal va al final.
+   ========================================================================== */
+
+/* ----- Tablets (768px o menos) ----- */
 @media (max-width: 768px) {
     body {
         padding: 16px;
     }
 
     header {
-        flex-direction: row;
-        gap: 0;
-        margin-bottom: 40px;
         padding: 16px 0;
-        justify-content: space-between;
-        align-items: center;
     }
 
     .logo {
@@ -710,6 +728,7 @@ footer {
         display: flex;
     }
 
+    /* Menú lateral que se desliza desde la izquierda */
     nav {
         position: fixed;
         top: 0;
@@ -720,11 +739,11 @@ footer {
         background-color: var(--card-bg);
         flex-direction: column;
         gap: 12px;
-        padding: 80px 20px 20px 20px;
+        padding: 80px 20px 20px;
         text-align: center;
         transition: left 0.3s ease;
         z-index: 999;
-        border-right: 2px solid var(--border-color);
+        border-right: var(--border-base);
         box-shadow: 4px 0 0 var(--border-color);
         border-top-right-radius: 24px;
         border-bottom-right-radius: 24px;
@@ -759,11 +778,11 @@ footer {
     .btn-main {
         font-size: 1rem;
         padding: 14px 28px;
-        box-shadow: 3px 3px 0px var(--border-color);
+        box-shadow: 3px 3px 0 var(--border-color);
     }
 
     .btn-main:hover {
-        box-shadow: 4px 4px 0px var(--border-color);
+        box-shadow: 4px 4px 0 var(--border-color);
     }
 
     .btn-main.claw-hover .claw-mark {
@@ -782,13 +801,7 @@ footer {
     .card {
         border-radius: 20px;
         padding: 24px;
-        box-shadow: 3px 3px 0px var(--border-color);
-    }
-
-    .card-hover-emoji {
-        font-size: 4.5rem;
-        right: -12px;
-        bottom: -18px;
+        box-shadow: 3px 3px 0 var(--border-color);
     }
 
     .card h3 {
@@ -798,6 +811,12 @@ footer {
 
     .card p {
         font-size: 0.95rem;
+    }
+
+    .card-hover-emoji {
+        font-size: 4.5rem;
+        right: -12px;
+        bottom: -18px;
     }
 
     .portfolio-grid {
@@ -817,7 +836,7 @@ footer {
         margin-bottom: 60px;
         padding: 32px 20px;
         border-radius: 20px;
-        box-shadow: 3px 3px 0px var(--border-color);
+        box-shadow: 3px 3px 0 var(--border-color);
     }
 
     .interactive-banner h2 {
@@ -834,7 +853,8 @@ footer {
     }
 }
 
-/* ===== CELULARES PEQUEÑOS (480px y inferior) ===== */
+/* ----- Celulares chicos (480px o menos) ----- */
+/* Solo se redefine lo que cambia respecto de las tablets */
 @media (max-width: 480px) {
     body {
         padding: 12px;
@@ -850,10 +870,6 @@ footer {
         padding: 6px 12px;
     }
 
-    .hamburger {
-        display: flex;
-    }
-
     .hamburger span {
         height: 2.5px;
     }
@@ -863,42 +879,29 @@ footer {
         height: 2.5px;
     }
 
-    nav.active {
-        left: 0;
-    }
-
     nav a {
-        margin-left: 0;
         font-size: 1rem;
         padding: 14px;
-        display: block;
-        border-bottom: 1px solid var(--border-color);
     }
 
     .hero {
         margin-bottom: 48px;
     }
 
-    .hero h1 {
-        line-height: 1.2;
-        margin-bottom: 16px;
-    }
-
     .hero p {
         font-size: 0.95rem;
         margin-bottom: 20px;
-        color: #4A4A4A;
     }
 
     .btn-main {
         display: block;
         font-size: 0.95rem;
         padding: 12px 24px;
-        box-shadow: 2px 2px 0px var(--border-color);
+        box-shadow: 2px 2px 0 var(--border-color);
     }
 
     .btn-main:hover {
-        box-shadow: 3px 3px 0px var(--border-color);
+        box-shadow: 3px 3px 0 var(--border-color);
     }
 
     .interactive-banner .claw-mark {
@@ -908,20 +911,13 @@ footer {
 
     .grid-section {
         margin-bottom: 48px;
-        grid-template-columns: 1fr;
         gap: 12px;
     }
 
     .card {
         border-radius: 16px;
         padding: 20px;
-        box-shadow: 2px 2px 0px var(--border-color);
-    }
-
-    .card-hover-emoji {
-        font-size: 3.4rem;
-        right: -8px;
-        bottom: -12px;
+        box-shadow: 2px 2px 0 var(--border-color);
     }
 
     .card h3 {
@@ -932,6 +928,12 @@ footer {
     .card p {
         font-size: 0.9rem;
         line-height: 1.5;
+    }
+
+    .card-hover-emoji {
+        font-size: 3.4rem;
+        right: -8px;
+        bottom: -12px;
     }
 
     .portfolio-img-wrapper {
@@ -946,11 +948,32 @@ footer {
         font-size: 1.3rem;
     }
 
+    .avatar-frame {
+        width: 180px;
+        height: 210px;
+    }
+
+    .emoji-front .falling-emoji {
+        font-size: 2.1rem;
+    }
+
+    .emoji-back-1 .falling-emoji {
+        font-size: 1.3rem;
+    }
+
+    .emoji-back-2 .falling-emoji {
+        font-size: 1.05rem;
+    }
+
+    .emoji-back-3 .falling-emoji {
+        font-size: 0.8rem;
+    }
+
     .interactive-banner {
         margin-bottom: 48px;
         padding: 24px 16px;
         border-radius: 16px;
-        box-shadow: 2px 2px 0px var(--border-color);
+        box-shadow: 2px 2px 0 var(--border-color);
     }
 
     .interactive-banner h2 {
@@ -966,5 +989,55 @@ footer {
     footer {
         padding: 24px 0;
         font-size: 0.85rem;
+    }
+}
+
+/* ----- Menú móvil en horizontal ----- */
+/* Va al final a propósito: debe pisar los estilos de nav de los bloques de 768px y 480px */
+@media (max-width: 768px) and (orientation: landscape) {
+    nav {
+        padding-top: 40px;
+        gap: 6px;
+    }
+
+    nav a {
+        padding: 8px 16px;
+        font-size: 0.95rem;
+    }
+}
+
+
+/* ==========================================================================
+   MOVIMIENTO REDUCIDO
+   Respeta prefers-reduced-motion: sin animaciones, parallax ni lluvia de emojis.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .img-logo.coin,
+    .section-title.coin,
+    .word-rotator-cursor,
+    .bg-dots::before,
+    .bg-dots::after {
+        animation: none;
+    }
+
+    /* Los elementos aparecen directo en su posición final; solo cambia la opacidad */
+    .claw-mark {
+        transition: opacity 0.2s ease;
+        transform: translate(14%, -20%) rotate(-6deg) scale(1);
+    }
+
+    .card-hover-emoji {
+        transition: opacity 0.2s ease;
+        transform: rotate(-22deg) scale(1);
+    }
+
+    .avatar-photo {
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .emoji-layer {
+        display: none;
     }
 }
