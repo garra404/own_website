@@ -747,6 +747,8 @@ footer {
         box-shadow: 4px 0 0 var(--border-color);
         border-top-right-radius: 24px;
         border-bottom-right-radius: 24px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     nav.active {
@@ -996,13 +998,14 @@ footer {
 /* Va al final a propósito: debe pisar los estilos de nav de los bloques de 768px y 480px */
 @media (max-width: 768px) and (orientation: landscape) {
     nav {
-        padding-top: 40px;
-        gap: 6px;
+        padding-top: 25px; /* Achicado drásticamente para ganar espacio arriba */
+        gap: 4px;          /* Espaciado mínimo entre enlaces */
+        overflow-y: auto;  /* Permite scrollear si aún así no entra todo */
     }
 
     nav a {
-        padding: 8px 16px;
-        font-size: 0.95rem;
+        padding: 8px 12px; /* Enlaces más compactos a lo alto */
+        font-size: 0.9rem;
     }
 }
 
