@@ -15,6 +15,10 @@
     /* Naranja más oscuro, para texto y detalles sobre fondo claro */
     --accent-orange-strong: #E08A3E;
     --content-width: 1100px;
+
+    /* Tipografías */
+    --font-heading: 'Sora', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
 
@@ -26,7 +30,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Fredoka', 'Comfortaa', 'Nunito', system-ui, sans-serif;
 }
 
 html {
@@ -35,11 +38,31 @@ html {
 }
 
 body {
+    font-family: var(--font-body);
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
     padding: 20px;
     overflow-x: hidden;
+}
+
+/* Los controles de formulario no heredan la fuente por defecto */
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+/* Títulos, navegación y botones usan la fuente de display */
+h1, h2, h3, h4,
+nav a,
+.btn-main,
+.portfolio-link,
+.role-badge,
+.section-title {
+    font-family: var(--font-heading);
+    letter-spacing: -0.015em;
 }
 
 body.no-scroll {
@@ -221,8 +244,8 @@ nav a:hover {
 
 .hero h1 {
     margin-bottom: 24px;
-    font-size: clamp(2.2rem, 6.2vw, 5.8rem);
-    line-height: 0.9;
+    font-size: clamp(2rem, 5.4vw, 4.8rem);
+    line-height: 1.05;
 }
 
 .hero p {
@@ -661,20 +684,23 @@ footer {
 
 /* ==========================================================================
    TEXTURA DE FONDO
-   Círculos que se desplazan lentamente y se desvanecen hacia arriba.
+   Círculos que se desplazan lentamente y se desvanecen hacia el centro desde los bordes superior e inferior.
    ========================================================================== */
 
 .bg-dots {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40vh;
+    inset: 0;
     overflow: hidden;
     pointer-events: none;
     z-index: -1;
-    -webkit-mask-image: linear-gradient(to top, black 30%, transparent 100%);
-    mask-image: linear-gradient(to top, black 30%, transparent 100%);
+    /* Dos degradados superpuestos: uno desde el borde inferior y otro desde el superior.
+       Cada franja mide 40vh: sólida los primeros 12vh y se desvanece hasta los 40vh. */
+    -webkit-mask-image:
+        linear-gradient(to top, black 12vh, transparent 26vh),
+        linear-gradient(to bottom, black 12vh, transparent 26vh);
+    mask-image:
+        linear-gradient(to top, black 12vh, transparent 26vh),
+        linear-gradient(to bottom, black 12vh, transparent 26vh);
 }
 
 .bg-dots::before,
