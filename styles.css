@@ -711,9 +711,9 @@ footer {
     bottom: 0;
     left: 0;
     /* El ancho extra y el desplazamiento de 25px (= background-size) generan un loop sin saltos */
-    width: calc(100% + 25px);
-    background-image: radial-gradient(circle, var(--text-color) 5.5px, transparent 3px);
-    background-size: 25px 25px;
+    width: calc(100% + 20px);
+    background-image: radial-gradient(circle, var(--text-color) 5px, transparent 2.5px);
+    background-size: 20px 20px;
     opacity: 0.03;
     animation: dots-drift 3s linear infinite;
 }
@@ -724,7 +724,7 @@ footer {
     }
 
     to {
-        transform: translateX(-25px);
+        transform: translateX(-20px);
     }
 }
 
