@@ -5,25 +5,35 @@ const navLinks = navMenu.querySelectorAll('a');
 document.querySelector('.img-logo')
     .addEventListener('contextmenu', e => e.preventDefault());
 
+// Función auxiliar para sincronizar el estado
+function toggleMenu(isOpen) {
+  hamburger.classList.toggle('active', isOpen);
+  navMenu.classList.toggle('active', isOpen);
+  document.body.classList.toggle('no-scroll', isOpen);
+  
+  // Actualiza el atributo accessible
+  hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  hamburger.setAttribute('aria-label', isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+}
+
+// Evento al hacer clic en el botón hamburger
 hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-    document.body.classList.toggle('no-scroll');
+  const isCurrentlyActive = hamburger.classList.contains('active');
+  toggleMenu(!isCurrentlyActive);
 });
 
-
+// Evento al hacer clic en cualquier enlace del menú
 navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    });
+  link.addEventListener('click', () => {
+    toggleMenu(false);
+  });
 });
 
+// Evento al hacer clic fuera del header/nav
 document.addEventListener('click', (e) => {
-    if (!e.target.closest('header') && !e.target.closest('nav')) {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    }
+  if (!e.target.closest('header') && !e.target.closest('nav')) {
+    toggleMenu(false);
+  }
 });
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
