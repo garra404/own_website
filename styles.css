@@ -482,6 +482,7 @@ nav a:focus-visible,
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-green));
 }
 
 .portfolio-card:hover .portfolio-img-wrapper img {
