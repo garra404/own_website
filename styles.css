@@ -311,6 +311,26 @@ nav a:hover {
     box-shadow: 6px 6px 0 var(--border-color);
 }
 
+/* ==========================================================================
+   ESTADOS DE FOCO VISIBLES (NAVEGACIÓN POR TECLADO / ACCESIBILIDAD)
+   ========================================================================== */
+
+/* Botones principales y enlaces de navegación */
+.btn-main:focus-visible,
+.portfolio-link:focus-visible,
+nav a:focus-visible,
+.hamburger:focus-visible {
+  outline: 3px solid var(--accent-orange-strong);
+  outline-offset: 4px;
+}
+
+/* Ajuste específico para cards o elementos dentro del banner si reciben foco */
+.interactive-banner:focus-visible,
+.card:focus-visible {
+  outline: 3px dashed var(--text-color);
+  outline-offset: 4px;
+}
+
 
 /* ==========================================================================
    EFECTO GARRA
