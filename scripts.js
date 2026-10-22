@@ -253,3 +253,12 @@ if (!prefersReducedMotion) {
         titleObserver.observe(title);
     });
 }
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) startRain(entry.target);
+    else stopRain(entry.target);
+  });
+}, { threshold: 0.1 });
+
+avatarFrames.forEach(frame => observer.observe(frame));
