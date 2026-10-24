@@ -89,10 +89,13 @@ if (avatarFrames.length && !prefersReducedMotion) {
     window.addEventListener('resize', onScroll);
 }
 
-// ===== Lluvia de emojis: en hover (desktop) o siempre activa (touch) =====
+// ===== Lluvia de emojis: en hover (desktop) o activa mientras la card es visible (touch) =====
 // Detecta si el dispositivo tiene un mouse real con hover preciso.
-// En tablets/celulares (sin hover real) la lluvia queda encendida siempre.
+// En tablets/celulares (sin hover real) la lluvia corre mientras la card está en pantalla.
 const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+// Registro de controles (startRain/stopRain) de cada card, para usarlos desde el observer
+const rainControls = new Map();
 
 if (avatarFrames.length && !prefersReducedMotion) {
     avatarFrames.forEach(frame => {
@@ -136,6 +139,9 @@ if (avatarFrames.length && !prefersReducedMotion) {
             frame.classList.remove('is-raining');
         }
 
+        // Guarda los controles de esta card para el observer
+        rainControls.set(frame, { startRain, stopRain });
+
         if (supportsHover) {
             // Desktop: lluvia solo mientras el mouse está sobre la card
             frame.addEventListener('mouseenter', startRain);
@@ -143,11 +149,23 @@ if (avatarFrames.length && !prefersReducedMotion) {
             // Soporte básico de teclado/accesibilidad si la card recibe foco
             frame.addEventListener('focus', startRain);
             frame.addEventListener('blur', stopRain);
-        } else {
-            // Tablet/celular: sin hover real, la lluvia queda siempre activa
-            startRain();
         }
+        // Tablet/celular: la lluvia la controla el IntersectionObserver de abajo
     });
+
+    // Touch: la lluvia corre solo mientras la card está visible (ahorra CPU)
+    if (!supportsHover) {
+        const rainObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const ctrl = rainControls.get(entry.target);
+                if (!ctrl) return;
+                if (entry.isIntersecting) ctrl.startRain();
+                else ctrl.stopRain();
+            });
+        }, { threshold: 0.1 });
+
+        avatarFrames.forEach(frame => rainObserver.observe(frame));
+    }
 }
 
 // ===== Emoji gigante de las cards de "servicios": aparece al tocar en touch =====
@@ -171,6 +189,30 @@ if (serviceCards.length && !supportsHover) {
             serviceCards.forEach(c => c.classList.remove('is-touched'));
         }
     });
+}
+
+// ===== Aparición de las cards de "servicios" al acercarse =====
+// Se revelan cuando su borde superior cruza el 10% inferior del viewport.
+// Cada card se observa por separado: en mobile entra una por vez,
+// en desktop las que comparten fila entran juntas con un leve escalonado.
+if (serviceCards.length && !prefersReducedMotion) {
+    const cardObserver = new IntersectionObserver((entries) => {
+        // boundingClientRect.top < 0 cubre cards que quedaron arriba (ej: recarga con scroll)
+        const toReveal = entries.filter(entry =>
+            entry.isIntersecting || entry.boundingClientRect.top < 0
+        );
+
+        toReveal.forEach((entry, i) => {
+            entry.target.style.transitionDelay = `${i * 120}ms`;
+            entry.target.classList.add('is-visible');
+            cardObserver.unobserve(entry.target); // se anima una sola vez
+        });
+    }, {
+        threshold: 0,
+        rootMargin: '0px 0px -10% 0px'
+    });
+
+    serviceCards.forEach(card => cardObserver.observe(card));
 }
 
 const heroWords = ['eficiencia', 'rapidez', 'claridad', 'seguridad', 'optimización', 'autonomía'];
@@ -231,6 +273,7 @@ if (wordRotator) {
         cycleWords();
     }
 }
+
 // ===== Pulso en los h2 al entrar en pantalla =====
 if (!prefersReducedMotion) {
     const sectionTitles = document.querySelectorAll('.section-title');
@@ -253,12 +296,3 @@ if (!prefersReducedMotion) {
         titleObserver.observe(title);
     });
 }
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) startRain(entry.target);
-    else stopRain(entry.target);
-  });
-}, { threshold: 0.1 });
-
-avatarFrames.forEach(frame => observer.observe(frame));
