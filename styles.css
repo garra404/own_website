@@ -512,12 +512,6 @@ nav a:focus-visible,
     transform: scale(1.03);
 }
 
-/* Video: la caja respeta la proporción 16:9 en todos los tamaños */
-.portfolio-img-wrapper.is-video {
-    height: auto;
-    aspect-ratio: 16 / 9;
-}
-
 .portfolio-content {
     padding: 28px;
     display: flex;
