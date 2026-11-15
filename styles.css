@@ -752,7 +752,10 @@ footer p:last-child a:hover {
   text-decoration-thickness: 2px;
 }
 
-footer a:visited {
+footer a,
+footer a:link,
+footer a:visited,
+footer a:active {
   color: inherit;
 }
 
