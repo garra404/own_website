@@ -738,6 +738,23 @@ footer {
     font-weight: 600;
 }
 
+footer p:last-child a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: currentColor;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+}
+
+footer p:last-child a:hover {
+  text-decoration-color: #E59523;
+  text-decoration-thickness: 2px;
+}
+
+footer a:visited {
+  color: inherit;
+}
 
 /* ==========================================================================
    TEXTURA DE FONDO
