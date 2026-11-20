@@ -1,0 +1,29 @@
+# garra 404 | servicios informáticos
+
+> Estudio de desarrollo web a medida y soluciones digitales para negocios: sitios web, tiendas autoadministrables y sistemas de gestión interna. Hacemos que la tecnología trabaje para vos.
+
+garra 404 (también escrito Garra404) trabaja en toda Argentina. El sitio es de una sola página, en español (es-AR): todo el contenido está en la home y las secciones se enlazan con anclas.
+
+## Servicios
+
+- [Servicios](https://garra404.com.ar/#que-hacemos)
+  - **Desarrollo web a medida**: soluciones tecnológicas pensadas para cada negocio, con una experiencia clara y dinámica y código sólido y optimizado.
+  - **Sitios autoadministrables**: tiendas online, portfolios y sitios de proyectos que el cliente puede administrar por su cuenta.
+  - **Sistemas de gestión interna**: sistemas para turnos, logística y control de stock, entre otros.
+  - **Asesoramiento tecnológico**.
+
+## Proyectos
+
+- [Nuestros trabajos](https://garra404.com.ar/#proyectos): proyectos realizados.
+- [Huellas Conectadas](https://www.huellasconectadas.com.ar): plataforma web colaborativa para la adopción, tránsito y búsqueda de mascotas en Argentina, con directorio de entidades rescatistas.
+- [EMV Productions](https://emv-productions.github.io/portfolio/): portfolio web para estudio fotográfico.
+- [La Casa del Mimbre](https://www.lacasadelmimbre.com.ar/): tienda online para una empresa familiar dedicada a la artesanía en mimbre.
+
+## Equipo
+
+- [Quiénes somos](https://garra404.com.ar/#nosotros): Santi (comunicación y proyectos), Juanma (desarrollo) y Mati (diseño de interfaces).
+
+## Contacto
+
+- [Contacto](https://garra404.com.ar/#contacto): garra404ok@gmail.com
+- [Instagram](https://www.instagram.com/garra_404)
