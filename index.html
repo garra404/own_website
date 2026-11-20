@@ -18,34 +18,132 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://garra404.com.ar/#website",
+      "url": "https://garra404.com.ar/",
+      "name": "garra 404",
+      "alternateName": ["Garra404", "garra 404 | servicios informáticos"],
+      "inLanguage": "es-AR",
+      "publisher": { "@id": "https://garra404.com.ar/#organization" }
+    },
+    {
   "@type": "ProfessionalService",
   "@id": "https://garra404.com.ar/#organization",
-  "name": "Garra404",
+  "name": "garra 404",
+  "alternateName": "Garra404",
   "url": "https://garra404.com.ar/",
-  "description": "Desarrollo web a medida y soluciones digitales para proyectos y negocios.",
-  "alternateName": "garra 404",
-  "email": "garra404ok@gmail.com",
   "logo": "https://garra404.com.ar/logo/logo_garra404.webp",
-  "inLanguage": "es-AR",
-  "serviceType": [
-    "Desarrollo web a medida",
-    "Tiendas online autoadministrables",
-    "Sistemas de gestión interna"
-  ],
-  "areaServed": {
-    "@type": "Country",
-    "name": "Argentina"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "San Martín",
-    "addressRegion": "Buenos Aires",
-    "addressCountry": "AR"
-  },
+  "image": "https://garra404.com.ar/assets/og-image.jpg",
+  "email": "garra404ok@gmail.com",
   "sameAs": [
     "https://www.instagram.com/garra_404"
   ],
-  "priceRange": "Consultar"
+      "description": "Estudio de desarrollo web a medida y soluciones digitales para negocios: sitios web, tiendas autoadministrables y sistemas de gestión interna.",
+      "slogan": "Hacemos que la tecnología trabaje para vos",
+      "knowsLanguage": "es",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Argentina"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "garra404ok@gmail.com",
+        "availableLanguage": "Spanish"
+      },
+      "employee": [
+        {
+          "@type": "Person",
+          "name": "Santi",
+          "jobTitle": "Comunicación y proyectos"
+        },
+        {
+          "@type": "Person",
+          "name": "Juanma",
+          "jobTitle": "Desarrollo"
+        },
+        {
+          "@type": "Person",
+          "name": "Mati",
+          "jobTitle": "Diseño de interfaces"
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios de garra 404",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Desarrollo web a medida",
+              "description": "Soluciones tecnológicas pensadas para cada negocio, con una experiencia clara y dinámica y código sólido y optimizado.",
+              "serviceType": "Desarrollo web"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Sitios autoadministrables",
+              "description": "Tiendas online, portfolios y sitios de proyectos que el cliente puede administrar por su cuenta.",
+              "serviceType": "Sitios web autoadministrables"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Sistemas de gestión interna",
+              "description": "Sistemas para turnos, logística y control de stock, entre otros.",
+              "serviceType": "Software de gestión"
+            }
+          }
+        ]
+      },
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Asesoramiento tecnológico" } }
+      ],
+      "subjectOf": {
+        "@type": "ItemList",
+        "name": "Proyectos realizados",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Huellas Conectadas",
+              "url": "https://www.huellasconectadas.com.ar",
+              "description": "Plataforma web colaborativa para la adopción, tránsito y búsqueda de mascotas en Argentina, con directorio de entidades rescatistas."
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "EMV Productions",
+              "url": "https://emv-productions.github.io/portfolio/",
+              "description": "Portfolio web para estudio fotográfico."
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "La Casa del Mimbre",
+              "url": "https://www.lacasadelmimbre.com.ar/",
+              "description": "Tienda online para una empresa familiar dedicada a la artesanía en mimbre."
+            }
+          }
+        ]
+      }
+    }
+  ]
 }
 </script>
   <link rel="canonical" href="https://garra404.com.ar/">
