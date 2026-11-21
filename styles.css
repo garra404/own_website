@@ -545,6 +545,31 @@ nav a:focus-visible,
     flex-grow: 1;
 }
 
+/* Etiquetas de resultado: neutras, planas y sin sombra para no parecer botones */
+.portfolio-tags {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    list-style: none;
+    margin: 0 0 14px;
+    padding: 0;
+}
+
+.portfolio-tag {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 3px 10px;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background-color: var(--bg-color);
+    border: 1.5px dashed var(--text-muted);
+    border-radius: 8px;
+    cursor: default;
+    user-select: none;
+}
+
 .portfolio-footer {
     display: flex;
     justify-content: space-between;
@@ -1051,6 +1076,15 @@ footer a:active {
 
     .portfolio-content h3 {
         font-size: 1.3rem;
+    }
+
+    .portfolio-tags {
+        gap: 6px;
+    }
+
+    .portfolio-tag {
+        font-size: 0.7rem;
+        padding: 2px 8px;
     }
 
     .avatar-frame {
